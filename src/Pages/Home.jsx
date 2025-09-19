@@ -14,7 +14,7 @@ import MasonryImagesGallery from "../Components/Image-gallery/MasonryImagesGalle
 import Testimonials from "../Components/Testimonials/Testimonials";
 import Newsletter from "../Shared/Newsletter";
 import Contact from "./Contact";
-import FeaturedBlogsList from "../Components/FeaturedBlogs.jsx/FeaturedBlogsList";
+// import FeaturedBlogsList from "../Components/FeaturedBlogs.jsx/FeaturedBlogsList";
 
 const Home = () => {
   return (
@@ -55,11 +55,11 @@ const Home = () => {
                 <img src={heroImg2} alt="" />
               </div>
             </Col>
-            <SearchBar />
+            {/* <SearchBar /> */}
           </Row>
         </Container>
       </section>
-      <section>
+      {/* <section>
         <Container>
           <Row>
             <Col lg="12">
@@ -69,9 +69,24 @@ const Home = () => {
           </Row>
           <ServiceList />
         </Container>
-      </section>
+      </section> */}
 
       <section>
+        <Container>
+          <Row>
+            <Col lg="12" className="mb-5">
+              <Subtitle subtitle={"Explore"} />
+              <h2 className="featured__tour-title">Our Featured Tours</h2>
+            </Col>
+            <row>
+             <SearchBar />
+            </row>
+             <br></br>
+            <FeaturedToursList />
+          </Row>
+        </Container>
+      </section>
+      {/* <section>
         <Container>
           <Row>
             <Col lg="12" className="mb-5">
@@ -81,9 +96,11 @@ const Home = () => {
             <FeaturedToursList />
           </Row>
         </Container>
-      </section>
+      </section> */}
 
-      <section>
+
+
+      {/* <section>
         <Container>
           <Row>
             <Col lg="6">
@@ -122,9 +139,9 @@ const Home = () => {
             </Col>
           </Row>
         </Container>
-      </section>
+      </section> */}
 
-      <section>
+      {/* <section>
         <Container>
           <Row>
             <Col lg="12">
@@ -138,8 +155,8 @@ const Home = () => {
             </Col>
           </Row>
         </Container>
-      </section>
-      <section>
+      </section> */}
+      {/* <section>
         <Container>
           <div className="title">
             <Subtitle subtitle={"Featured Blogs"} />
@@ -148,8 +165,8 @@ const Home = () => {
             <FeaturedBlogsList lg={4} md={6} sm={6} />
           </Row>
         </Container>
-      </section>
-      <section>
+      </section> */}
+      {/* <section>
         <Container>
           <Row>
             <Col lg="12">
@@ -161,9 +178,9 @@ const Home = () => {
             <Testimonials />
           </Row>
         </Container>
-      </section>
-      <Contact />
-      <Newsletter />
+      </section> */}
+      {/* <Contact />
+      <Newsletter /> */}
     </>
   );
 };

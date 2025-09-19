@@ -1,4 +1,5 @@
 import React from 'react';
+// import SearchBar from '../../Shared/SearchBar'; // Assuming SearchBar is in this path
 
 // Hardcoded data with at least four items for each category
 const travelData = {
@@ -22,7 +23,7 @@ const travelData = {
             "Description": "A contemporary hotel with an urban resort feel, offering spacious rooms and a tranquil spa.",
             "Price": "₹12000/night",
             "link": "https://example.com/the-lodhi",
-            "photo": "https://media.istockphoto.com/id/1327056099/photo/unique-shophouse-with-green-trees-and-clear-sky.jpg?s=612x612&w=0&k=20&c=TzcRaY00X4g5p6lQ1SAhrSubna3tsn2_py3vUWbFKnk="
+            "photo": "https://media.istockphoto.com/id/1327056099/photo/unique-shophouse-with-green-trees-and-clear-sky.jpg?s=612x612&w=0&k=20&c=TzcRaY00X4g5p6lQ1SAhrSubna3tsn2_py3vUWbKnk="
         },
         {
             "Name": "Mountain View Resort",
@@ -124,94 +125,225 @@ const travelData = {
     ]
 };
 
-// CSS for all cards and the main page layout
+// CSS for all cards and the main page layout, with responsive and spacing fixes
 const travelGuideCss = `
-    .travel-guide-container {
-        padding: 2rem;
-        font-family: sans-serif;
-        color: #333;
-    }
-    .travel-guide-container h1 {
-        text-align: center;
-        font-size: 2.5rem;
-        margin-bottom: 2rem;
-        color: #1a1a1a;
-    }
-    .travel-guide-container h2 {
-        font-size: 1.8rem;
-        margin-top: 3rem;
-        margin-bottom: 1.5rem;
-        border-bottom: 2px solid #ddd;
-        padding-bottom: 0.5rem;
-        color: #444;
-    }
-    .hotels-container,
+
+.travel-guide-container {
+    padding: 2rem;
+    font-family: sans-serif;
+    color: #333;
+}
+
+.travel-guide-container h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: #1a1a1a;
+}
+
+.travel-guide-container h2 {
+    font-size: 1.8rem;
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 0.5rem;
+    color: #444;
+}
+
+/* Flexbox containers for cards */
+.hotels-container,
 .restaurants-container,
 .activities-container,
 .shopping-container {
     display: flex;
     flex-wrap: wrap; 
     gap: 1.5rem; 
-    justify-content: space-between; /* Change this line */
-    align-items: stretch; /* Add this to make all cards the same height */
+    justify-content: space-between;
+    align-items: stretch;
 }
+
+/*====================
+  Card Components
+====================*/
+.card-container {
+    flex: 1 1 250px;
+    max-width: 250px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-container:hover {
+    transform: translateY(-5px); 
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.card-container img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-container h3 {
+    font-size: 1.2rem;
+    margin: 1rem 1rem 0.5rem 1rem;
+    color: #333;
+}
+
+.card-container p {
+    font-size: 1rem;
+    color: #666;
+    margin: 0 1rem 0.5rem 1rem;
+}
+
+.card-container a {
+    display: inline-block;
+    text-decoration: none;
+    background-color: #007bff;
+    color: #fff;
+    padding: 0.75rem 1rem;
+    border-radius: 4px;
+    text-align: center;
+    margin: auto 1rem 1rem 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.card-container a:hover {
+    background-color: #0056b3;
+}
+
+/*====================
+  SearchBar Component
+====================*/
+.search-bar-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 1.5rem 2.5rem;
+    background-color: #fff;
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.search-form {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.search-input-group {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex: 1;
+    border-right: 1px solid #ccc;
+    padding-right: 1.5rem;
+}
+
+.search-input-group:last-of-type {
+    border-right: none;
+    padding-right: 0;
+}
+
+.date-input-group .search-input {
+    flex-direction: column; 
+}
+
+.date-input-group .date-inputs {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem; 
+}
+
+.date-input-group .date-inputs input {
+    flex: 1;
+}
+
+.search-input-group label {
+    font-size: 0.9rem;
+    color: #666;
+    font-weight: 500;
+}
+
+.search-input-group input,
+.search-input-group select {
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    color: #333;
+    padding: 0.2rem 0;
+}
+
+.search-button {
+    background-color: #f7a047;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    flex-shrink: 0;
+}
+
+.search-button i {
+    font-size: 1.5rem;
+    color: #fff;
+}
+
+.search-button:hover {
+    background-color: #e59441;
+}
+
+/*====================
+  Responsive Styles
+====================*/
+@media (max-width: 768px) {
+    /* Main Layout */
+    .hotels-container,
+    .restaurants-container,
+    .activities-container,
+    .shopping-container {
+        flex-direction: column; 
+        align-items: center;
+    }
     .card-container {
-        flex: 1 1 250px; /* Adjusted flex-basis for better desktop spacing */
-        max-width: 250px;
-        background-color: #fff;
-        border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        overflow: hidden;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        display: flex;
+        width: 90%; 
+        max-width: none;
+    }
+
+    /* SearchBar */
+    .search-bar-container {
+        padding: 1rem;
+    }
+    .search-form {
         flex-direction: column;
+        gap: 1.5rem;
     }
-    .card-container:hover {
-        transform: translateY(-5px); 
-        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
-    }
-    .card-container img {
+    .search-input-group {
         width: 100%;
-        height: 200px;
-        object-fit: cover;
+        border-right: none;
+        border-bottom: 1px solid #ccc;
+        padding-right: 0;
+        padding-bottom: 1rem;
     }
-    .card-container h3 {
-        font-size: 1.2rem;
-        margin: 1rem 1rem 0.5rem 1rem;
-        color: #333;
+    .search-input-group:last-of-type {
+        border-bottom: none;
+        padding-bottom: 0;
     }
-    .card-container p {
-        font-size: 1rem;
-        color: #666;
-        margin: 0 1rem 0.5rem 1rem;
+    .search-button {
+        width: 100%;
+        border-radius: 8px;
     }
-    .card-container a {
-        display: inline-block;
-        text-decoration: none;
-        background-color: #007bff;
-        color: #fff;
-        padding: 0.75rem 1rem;
-        border-radius: 4px;
-        text-align: center;
-        margin: 0 1rem 1rem 1rem;
-        transition: background-color 0.3s ease;
-    }
-    .card-container a:hover {
-        background-color: #0056b3;
-    }
-    @media (max-width: 768px) {
-        .hotels-container,
-        .restaurants-container,
-        .activities-container,
-        .shopping-container {
-            flex-direction: column; 
-            align-items: center;
-        }
-        .card-container {
-            width: 90%; 
-            max-width: none;
-        }
-    }
+}
 `;
 
 // Individual Card Components
@@ -255,17 +387,116 @@ const ShoppingCard = ({ shopping }) => (
     </div>
 );
 
+const SearchBar = () => {
+    const [location, setLocation] = React.useState('');
+    const [goingDate, setGoingDate] = React.useState('');
+    const [returningDate, setReturningDate] = React.useState('');
+    const [people, setPeople] = React.useState('');
+    const [travelMode, setTravelMode] = React.useState('flight');
+
+    const searchHandler = (e) => {
+        e.preventDefault();
+        if (!location.trim()) {
+            alert('Please enter a location to search.');
+            return;
+        }
+        const searchQuery = `Location: ${location}, Going Date: ${goingDate}, Returning Date: ${returningDate}, Number of People: ${people}, Travel Mode: ${travelMode}`;
+        alert(`Simulating API call with query: ${searchQuery}`);
+        console.log("Simulating API call with query:", searchQuery);
+    };
+
+    return (
+        <div className="search-bar-container">
+            <form className="search-form" onSubmit={searchHandler}>
+                <div className="search-input-group">
+                    <span className="search-icon">
+                        <i className="ri-map-pin-line"></i>
+                    </span>
+                    <div className="search-input">
+                        <label>Location</label>
+                        <input
+                            type="text"
+                            placeholder="Where are you going?"
+                            value={location}
+                            onChange={(e) => setLocation(e.target.value)}
+                        />
+                    </div>
+                </div>
+                <div className="search-input-group date-input-group">
+                    <span className="search-icon">
+                        <i className="ri-calendar-line"></i>
+                    </span>
+                    <div className="search-input">
+                        <label>From - To</label>
+                        <div className="date-inputs">
+                            <input
+                                type="date"
+                                value={goingDate}
+                                onChange={(e) => setGoingDate(e.target.value)}
+                                aria-label="Going date"
+                            />
+                            <span>-</span>
+                            <input
+                                type="date"
+                                value={returningDate}
+                                onChange={(e) => setReturningDate(e.target.value)}
+                                aria-label="Returning date"
+                            />
+                        </div>
+                    </div>
+                </div>
+                <div className="search-input-group">
+                    <span className="search-icon">
+                        <i className="ri-group-line"></i>
+                    </span>
+                    <div className="search-input">
+                        <label>Number of People</label>
+                        <input
+                            type="number"
+                            placeholder="0"
+                            min="1"
+                            value={people}
+                            onChange={(e) => setPeople(e.target.value)}
+                        />
+                    </div>
+                </div>
+                <div className="search-input-group">
+                    <span className="search-icon">
+                        <i className="ri-car-line"></i>
+                    </span>
+                    <div className="search-input">
+                        <label>Travel Mode</label>
+                        <select
+                            value={travelMode}
+                            onChange={(e) => setTravelMode(e.target.value)}
+                        >
+                            <option value="flight">Flight</option>
+                            <option value="train">Train</option>
+                            <option value="car">Car</option>
+                            <option value="bus">Bus</option>
+                        </select>
+                    </div>
+                </div>
+                <button className="search-button" type="submit">
+                    <i className="ri-search-line"></i>
+                </button>
+            </form>
+        </div>
+    );
+};
+
 
 // Main Travel Guide Component
 const TravelGuide = () => {
     React.useEffect(() => {
-      const styleSheet = document.createElement("style");
-      styleSheet.innerText = travelGuideCss;
-      document.head.appendChild(styleSheet);
+        const styleSheet = document.createElement("style");
+        styleSheet.innerText = travelGuideCss;
+        document.head.appendChild(styleSheet);
     }, []);
 
     return (
         <div className="travel-guide-container">
+            <SearchBar/>
             <h1>Travel Guide: Delhi</h1>
 
             <h2>Hotels</h2>

@@ -30,7 +30,7 @@ const TourCard = ({ tour }) => {
               <img src={photo} alt="tour" />
               </div>
             </Link>
-          <span>Featured</span>
+          {/* <span>Featured</span> */}
         </div>
         <CardBody>
           <div className="card__top d-flex align-items-center justify-content-between">
